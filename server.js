@@ -5,6 +5,7 @@ var fs = require('fs');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var bcrypt = require('bcrypt');
 
 const res = require('express/lib/response');
 
@@ -39,44 +40,29 @@ app.get('/main', function(req, res){
 })
 
 
-function restrict(req, res, next) {
- if (req.session.loggedin) {
-    next();
- } else {
-    req.session.error = 'Access denied!';
-    res.sendFile(path.join(__dirname + '/login.html'));
- }
-}
-  
-app.use('/', function(req, res, next) {
-    if ( req.session.loggedin == true || req.url == "/login" || req.url == "/register" ) {
-      next();
-    }
-    else {
-      res.sendFile(path.join(__dirname + '/login.html'));
-    }
+app.post('/login', function(req,res){
+    var username = req.body.username;
+    var password = req.body.password;
+
+    connection.query ('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+        if(error) {
+            console.log('err :' +err);
+        } else {
+            console.log(rows);
+            if (rows[0]!=undefined) {
+                if (!bcrypt.compareSync(password, rows[0].password)) {   
+                        console.log('패스워드가 일치하지 않습니다');  
+                } else {
+                        console.log('로그인 성공');
+                }
+        } else {
+                console.log(rows[0]);
+                console.log('해당 ID가 없습니다');
+        }
+     }
+    })
 });
 
-app.post('/login', function(req, res) {
-	var username = request.body.username;
-	var password = request.body.password;
-	if (username && password) {
-		connection.query('SELECT * FROM user WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (error) throw error;
-			if (results.length > 0) {
-				req.session.loggedin = true;
-				req.session.username = username;
-				res.redirect('/main');
-				res.end();
-			} else {
-				res.sendFile(path.join(__dirname + '/loginerror.html'));
-			}			
-		});
-	} else {
-		res.send('ID와 비밀번호를 입력해주세요');
-		res.end();
-	}
-});
 
 app.post('/register', function(req, res) {
 	var username = request.body.username;
