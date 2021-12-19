@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		<meta charset="utf-8">
+		<title>ALL ABOUT 코바늘 뜨개 - 로그인ERROR</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		
+		<!-- bootstrap 파일 불러오기 -->
+		<link href="public/css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- css 파일 불러오기-->
+		<link rel="stylesheet" href="public/css/main.css">
+	</head>
+
+
+   <body>
+    
+		<!-- navigation -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+			<div class="container">
+				<a class="navbar-brand" href="#"><img src="public/images/logo.png" alt=""></a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarResponsive">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item">
+						 <a class="nav-link" href="main.html">Home</a>
+						</li>
+
+						<li class="nav-item">
+						 <a class="nav-link" href="stitches.html">코바늘 기법</a>
+						</li>
+
+						<li class="nav-item active">
+						 <a class="nav-link" href="login.html">로그인
+						 <span class="sr-only">(current)</span>
+						 </a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+
+
+		<!-- login error -->
+		<div class="login-form">
+			<h2>Incorrect ID or Password<br>Try Again!</h2>
+			<h1>LOGIN</h1>
+
+			<form action="/login" method="POST">
+				<input type="text" name="username" placeholder="ID" required>
+				<input type="password" name="password" placeholder="Password" required>
+				<br><br><input type="submit" value="로그인">
+			</form>
+
+			
+			<a href="register.html">
+				<button>회원가입</button>
+			</a>
+		</div>
+	</body>
+
+		
+	<!-- footer -->
+	<div class="footer">
+		<div class="container">
+			<div class="copyright-text">
+				<p>Copyright &copy; 2021 ALL ABOUT 코바늘 뜨개
+			</div>
+		</div>
+	</div>
+
+
+</html>
